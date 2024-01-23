@@ -3,7 +3,7 @@
 #define max 101
 
 // baekjoon 6359
-
+윤서야 밥은먹고다녀라
 /*
 	Assuming that there are n rooms, we want to open and close the doors of each multiple room from 1 to n.
 	 At this time, we want to find the number of divisors in integers from 1 to n 

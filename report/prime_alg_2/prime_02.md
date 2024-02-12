@@ -33,7 +33,7 @@ int main() {
 ***
 
 ## 2. output
-![alt text](image-1.png)
+![!\[alt text\](image-3.png)](prime_02.png)
 ***
 
 ## 3. Analysis

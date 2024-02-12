@@ -27,7 +27,7 @@ int main(void) {
 ***
 
 ## 2. output
-![!\[alt text\](image.png)](<스크린샷 2024-02-12 043452.png>)
+![alt text](prime_01.png)
 ***
 
 ## 3. Analysis

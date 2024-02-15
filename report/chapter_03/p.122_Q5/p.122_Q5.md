@@ -1,6 +1,6 @@
 ### 2024.02.16
 ### 자료구조와 함께 배우는 알고리즘 입문 p.122_Q5
-# **Title**
+# **Find the Element at the Front**
 
 ## 1. code
  ```c

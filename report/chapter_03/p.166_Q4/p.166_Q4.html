@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>2024&period;02&period;16</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h3 id="20240216">2024.02.16</h3>
+<h3 id="자료구조와-함께-배우는-알고리즘-입문-p166_q4">자료구조와 함께 배우는 알고리즘 입문 p.166_Q4</h3>
+<h1 id="find-the-realative-location-of-the-key"><strong>Find the realative location of the key</strong></h1>
+<h2 id="1-code">1. code</h2>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> _CRT_SECURE_NO_WARNINGSs</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
+   <span class="hljs-type">int</span> max;
+   <span class="hljs-type">int</span> num;
+   <span class="hljs-type">int</span> front;
+   <span class="hljs-type">int</span> rear;
+   <span class="hljs-type">int</span>* que;
+}IntQueue;
+
+<span class="hljs-comment">/*--- 큐 초기화 ---*/</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">Initialize</span><span class="hljs-params">(IntQueue* q, <span class="hljs-type">int</span> max)</span>
+{
+   q-&gt;num = q-&gt;front = q-&gt;rear = <span class="hljs-number">0</span>;
+   <span class="hljs-keyword">if</span> ((q-&gt;que = <span class="hljs-built_in">calloc</span>(max, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>))) == <span class="hljs-literal">NULL</span>) {
+       q-&gt;max = <span class="hljs-number">0</span>;                             <span class="hljs-comment">// 배열 생성에 실패</span>
+       <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+   }
+   q-&gt;max = max;
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/*--- 큐에 데이터를 인큐 ---*/</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">Enque</span><span class="hljs-params">(IntQueue* q, <span class="hljs-type">int</span> x)</span>
+{
+   <span class="hljs-keyword">if</span> (q-&gt;num &gt;= q-&gt;max)
+       <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;                              <span class="hljs-comment">// 큐가 가득 참</span>
+   <span class="hljs-keyword">else</span> {
+       q-&gt;num++;
+       q-&gt;que[q-&gt;rear++] = x;
+       <span class="hljs-keyword">if</span> (q-&gt;rear == q-&gt;max)
+           q-&gt;rear = <span class="hljs-number">0</span>;
+       <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+   }
+}
+
+<span class="hljs-comment">/*--- 큐에서 데이터를 디큐 ---*/</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">Deque</span><span class="hljs-params">(IntQueue* q, <span class="hljs-type">int</span>* x)</span>
+{
+   <span class="hljs-keyword">if</span> (q-&gt;num &lt;= <span class="hljs-number">0</span>)                            <span class="hljs-comment">// 큐는 비어 있음</span>
+       <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+   <span class="hljs-keyword">else</span> {
+       q-&gt;num--;
+       *x = q-&gt;que[q-&gt;front++];
+       <span class="hljs-keyword">if</span> (q-&gt;front == q-&gt;max)
+           q-&gt;front = <span class="hljs-number">0</span>;
+       <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+   }
+}
+
+<span class="hljs-comment">/*--- 큐에서 검색 ---*/</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">Search</span><span class="hljs-params">(<span class="hljs-type">const</span> IntQueue* q, <span class="hljs-type">int</span> x)</span>
+{
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; q-&gt;num; i++) {
+       <span class="hljs-type">int</span> idx;
+       <span class="hljs-keyword">if</span> (q-&gt;que[idx = (i + q-&gt;front) % q-&gt;max] == x)
+           <span class="hljs-keyword">return</span> idx;     <span class="hljs-comment">// 검색 성공</span>
+   }
+   <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;              <span class="hljs-comment">// 검색 실패</span>
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">Search2</span><span class="hljs-params">(<span class="hljs-type">const</span> IntQueue *q, <span class="hljs-type">int</span> x)</span> {
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; q-&gt;num; i++) {
+   	<span class="hljs-type">int</span> idx;
+   	idx = (i + q-&gt;front) % q-&gt;max;
+   	<span class="hljs-keyword">if</span> (q-&gt;que[idx] == x) {
+   		<span class="hljs-keyword">return</span> i;
+   	}
+   }
+   <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">Terminate</span><span class="hljs-params">(IntQueue* q)</span>
+{
+   <span class="hljs-keyword">if</span> (q-&gt;que != <span class="hljs-literal">NULL</span>)
+       <span class="hljs-built_in">free</span>(q-&gt;que);                           <span class="hljs-comment">// 메모리 공간에 할당한 배열 해제</span>
+   q-&gt;max = q-&gt;num = q-&gt;front = q-&gt;rear = <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+   IntQueue que;
+   <span class="hljs-type">int</span> n;
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;size of queue : &quot;</span>);
+   <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);
+   Initialize(&amp;que, n);
+
+   <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+       <span class="hljs-type">int</span> input, answer;
+       <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;enque - yes(1), no(0) : &quot;</span>);
+       <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;answer);
+
+       <span class="hljs-keyword">if</span> (answer == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;
+       <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;enque : &quot;</span>);
+       <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;input);
+       Enque(&amp;que, input);
+   }
+
+   <span class="hljs-type">int</span> key;
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;key to find : &quot;</span>);
+   <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;key);
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, Search2(&amp;que, key));
+
+   Terminate(&amp;que);
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<hr>
+<h2 id="2-output">2. output</h2>
+<p><img src="file:///c:\Users\dbstj\report\p.166_Q4.png" alt="alt text"></p>
+<hr>
+<h2 id="3-analysis">3. Analysis</h2>
+<h3 id="how-to-approach">How to approach</h3>
+<p>The search function returns the index in which the same data as key is stored in the array of queues. In ring buffer format, the starting point of the search is not the first physical element but the first logical element of the queue.<br>
+The expression for finding the index of the currently searched location is (i+q-&gt;front)%q-&gt;max.<br>
+However, the value required in this problem requires an index value for how many positions the key is in relative to the first element, so i must be returned.</p>
+<h3 id="pros-and-cons">Pros and Cons</h3>
+<p>You can know the relative location of the values you search for.</p>
+
+            
+            
+        </body>
+        </html>

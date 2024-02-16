@@ -47,7 +47,7 @@ int main() {
 ***
 
 ## 2. output
-![alt text](p.121_Q3-1.png)
+![alt text](p.121_Q3.png)
 ***
 
 ## 3. Analysis

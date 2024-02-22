@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>2024&period;02&period;23</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h3 id="20240223">2024.02.23</h3>
+<h3 id="baekjoon-9663">baekjoon 9663</h3>
+<h1 id="n-queen"><strong>N-Queen</strong></h1>
+<h2 id="1-code">1. code</h2>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-type">int</span> cnt = <span class="hljs-number">0</span>;
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">set</span><span class="hljs-params">(<span class="hljs-type">int</span>* a, <span class="hljs-type">int</span>* b, <span class="hljs-type">int</span>* c, <span class="hljs-type">int</span>* pos, <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> i)</span> {
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) {
+   	<span class="hljs-keyword">if</span> (!a[j] &amp;&amp; !b[i + j] &amp;&amp; !c[i - j + n - <span class="hljs-number">1</span>]) {
+   		pos[i] = j;
+   		<span class="hljs-keyword">if</span> (i == n - <span class="hljs-number">1</span>) {
+   			cnt++;
+   			<span class="hljs-keyword">return</span>;
+   		}
+   		<span class="hljs-keyword">else</span> {
+   			a[j] = b[i + j] = c[i - j + n - <span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+   			<span class="hljs-built_in">set</span>(a, b, c, pos, n, i + <span class="hljs-number">1</span>);
+   			a[j] = b[i + j] = c[i - j + n - <span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
+   		}
+   	}
+   }
+
+   <span class="hljs-keyword">return</span>;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+   <span class="hljs-type">int</span> n;
+   <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);
+
+   <span class="hljs-type">int</span>* a =  <span class="hljs-built_in">calloc</span>(n, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+   <span class="hljs-type">int</span>* b = <span class="hljs-built_in">calloc</span>(<span class="hljs-number">2</span>*n<span class="hljs-number">-1</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+   <span class="hljs-type">int</span>* c = <span class="hljs-built_in">calloc</span>(<span class="hljs-number">2</span> * n - <span class="hljs-number">1</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+   <span class="hljs-type">int</span>* pos = <span class="hljs-built_in">calloc</span>(n, <span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));
+
+
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+   	a[i] = <span class="hljs-number">0</span>;
+   }
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>*n<span class="hljs-number">-1</span>; i++) {
+   	b[i] = <span class="hljs-number">0</span>;
+   	c[i] = <span class="hljs-number">0</span>;
+   }
+
+   <span class="hljs-built_in">set</span>(a, b, c, pos, n, <span class="hljs-number">0</span>);
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, cnt);
+
+   <span class="hljs-built_in">free</span>(a);
+   <span class="hljs-built_in">free</span>(b);
+   <span class="hljs-built_in">free</span>(c);
+   <span class="hljs-built_in">free</span>(pos);
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<hr>
+<h2 id="2-output">2. output</h2>
+<p><img src="file:///c:\Users\dbstj\report\9663.png" alt="alt text"></p>
+<hr>
+<h2 id="3-analysis">3. Analysis</h2>
+<h3 id="how-to-approach">How to approach</h3>
+<p>n&lt;=3 -&gt; <strong>no solution</strong><br>
+n must be larger than 3. at least 4.<br>
+However, there is no need to limit this condition through conditional statements. Because the scorer puts only the integers within the range and executes the code.</p>
+<p>There are only one queen in each rowas and colums.<br>
+Because of this rule, we get three arrays. =&gt; a[n], b[2<em>n-1], c[2</em>n-1]
+And we need one more array that shows where queen is in each colums. pos[n]</p>
+<p>In main function, we initialize all elements in a, b, c tp 0. and set(0)
+Here, 0 means a place where a queen can be put, and 1 means that it cannot be put.</p>
+<p>In set function, we execute the recursive function on the condition that we can place only one queen per row and one queen per diagonal.<br>
+If i becomes n-1, we increase cnt by 1, since we have assigned queens to all columns.</p>
+<h3 id="pros-and-cons">Pros and Cons</h3>
+<p>...</p>
+
+            
+            
+        </body>
+        </html>

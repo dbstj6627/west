@@ -29,7 +29,7 @@ flip(int32_t* pancakes, const int32_t num)
 	return;
 }
 
-
+//@brief		sort array to be ascending
 void 
 sort(int32_t* pancakes, int32_t num) {
 	int32_t cnt = 0;
